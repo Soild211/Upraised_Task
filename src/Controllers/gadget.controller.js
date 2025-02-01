@@ -1,6 +1,10 @@
 import gadget from '../Models/gadget.model.js';
 import { generateCodename, generateSuccessProbability } from '../Utils/generators.js';
 
+
+//route :  /api/gadgets
+//type : GET
+// if query is passed into url , will get specific to status else gives all gadgets
 export const getAllGadgets = async (req, res) => {
   try {
     const { status } = req.query
@@ -25,7 +29,9 @@ export const getAllGadgets = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+//route : /api/gadgets
+//type : POST
+//creates a New gadgets , expects name in body
 export const createGadget = async (req, res) => {
   try {
     const { name } = req.body;
@@ -51,7 +57,9 @@ export const createGadget = async (req, res) => {
   }
 };
 
-
+//route : /api/gadgets/:id
+//type : PATCH
+//updates a  gadget , expects id in requirements parameter and expects a json as the body for which it will update for
 export const updateGadget = async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,7 +71,9 @@ export const updateGadget = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+//route : /api/gadgets/:id
+//type : DELETE
+//decommissions a gadget , expects id in req params
 export const decommissionGadget = async (req, res) => {
   try {
     const { id } = req.params;
@@ -75,6 +85,9 @@ export const decommissionGadget = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+//route : /api/gadgets/:id/selfDestruct
+//type : POST
+//Completely deletes the gadget , expects id in params
 
 export const selfDestruct = async (req, res) => {
   try {
